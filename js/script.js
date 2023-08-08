@@ -19,3 +19,16 @@ function showData(dataArray) {
 }
 
 // Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
+
+async function getData(){ //Uso una funcion asincrona ya que utilizo "await" el cual pausa la ejecucion de la funcion asincrona y espera una la respuesta de la promesa.
+  const response = await fetch(DATA_URL); /* Utilizo await para esperar una promesa */
+  if (response.ok) {  // Si la respuesta es correcta, entonces...
+    const ListaDeEstudiantes = await response.json(); // Obtengo los datos del archivo
+    const Estudiantes = ListaDeEstudiantes.students; // Obtengo los estudiantes
+    showData(Estudiantes); // Muestro los datos
+  }
+  else {
+    alert( "Error al obtener los datos" ); 
+  } 
+}
+getData();
